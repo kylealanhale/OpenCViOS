@@ -10,6 +10,7 @@
 		70C587231A9BE82E0097C2A4 /* OpenCViOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587221A9BE82E0097C2A4 /* OpenCViOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70C587291A9BE82E0097C2A4 /* OpenCViOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C5871D1A9BE82E0097C2A4 /* OpenCViOS.framework */; };
 		70C587301A9BE82E0097C2A4 /* OpenCViOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5872F1A9BE82E0097C2A4 /* OpenCViOSTests.swift */; };
+		70C5873B1A9BE9150097C2A4 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C5873A1A9BE9150097C2A4 /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		70C587281A9BE82E0097C2A4 /* OpenCViOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCViOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C5872E1A9BE82E0097C2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70C5872F1A9BE82E0097C2A4 /* OpenCViOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCViOSTests.swift; sourceTree = "<group>"; };
+		70C5873A1A9BE9150097C2A4 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C5873B1A9BE9150097C2A4 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +58,7 @@
 			children = (
 				70C5871F1A9BE82E0097C2A4 /* OpenCViOS */,
 				70C5872C1A9BE82E0097C2A4 /* OpenCViOSTests */,
+				70C587391A9BE9150097C2A4 /* Libraries */,
 				70C5871E1A9BE82E0097C2A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +104,14 @@
 				70C5872E1A9BE82E0097C2A4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		70C587391A9BE9150097C2A4 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				70C5873A1A9BE9150097C2A4 /* opencv2.framework */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +335,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libraries",
+				);
 				INFOPLIST_FILE = OpenCViOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -338,6 +354,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libraries",
+				);
 				INFOPLIST_FILE = OpenCViOS/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
