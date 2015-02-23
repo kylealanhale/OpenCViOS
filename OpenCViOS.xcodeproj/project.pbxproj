@@ -11,6 +11,16 @@
 		70C587291A9BE82E0097C2A4 /* OpenCViOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C5871D1A9BE82E0097C2A4 /* OpenCViOS.framework */; };
 		70C587301A9BE82E0097C2A4 /* OpenCViOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5872F1A9BE82E0097C2A4 /* OpenCViOSTests.swift */; };
 		70C5873B1A9BE9150097C2A4 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C5873A1A9BE9150097C2A4 /* opencv2.framework */; };
+		70C587471A9BE98C0097C2A4 /* Mat+raw.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C5873D1A9BE98C0097C2A4 /* Mat+raw.h */; };
+		70C587481A9BE98C0097C2A4 /* Mat.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C5873E1A9BE98C0097C2A4 /* Mat.h */; };
+		70C587491A9BE98C0097C2A4 /* Mat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C5873F1A9BE98C0097C2A4 /* Mat.mm */; };
+		70C5874A1A9BE98C0097C2A4 /* Mat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C587401A9BE98C0097C2A4 /* Mat.swift */; };
+		70C5874B1A9BE98C0097C2A4 /* OpenCV+highgui.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587411A9BE98C0097C2A4 /* OpenCV+highgui.h */; };
+		70C5874C1A9BE98C0097C2A4 /* OpenCV+highgui.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C587421A9BE98C0097C2A4 /* OpenCV+highgui.mm */; };
+		70C5874D1A9BE98C0097C2A4 /* OpenCV+imgproc.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587431A9BE98C0097C2A4 /* OpenCV+imgproc.h */; };
+		70C5874E1A9BE98C0097C2A4 /* OpenCV+imgproc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C587441A9BE98C0097C2A4 /* OpenCV+imgproc.mm */; };
+		70C5874F1A9BE98C0097C2A4 /* OpenCV.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587451A9BE98C0097C2A4 /* OpenCV.h */; };
+		70C587501A9BE98C0097C2A4 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C587461A9BE98C0097C2A4 /* OpenCV.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +41,16 @@
 		70C5872E1A9BE82E0097C2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70C5872F1A9BE82E0097C2A4 /* OpenCViOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCViOSTests.swift; sourceTree = "<group>"; };
 		70C5873A1A9BE9150097C2A4 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		70C5873D1A9BE98C0097C2A4 /* Mat+raw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mat+raw.h"; sourceTree = "<group>"; };
+		70C5873E1A9BE98C0097C2A4 /* Mat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mat.h; sourceTree = "<group>"; };
+		70C5873F1A9BE98C0097C2A4 /* Mat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Mat.mm; sourceTree = "<group>"; };
+		70C587401A9BE98C0097C2A4 /* Mat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mat.swift; sourceTree = "<group>"; };
+		70C587411A9BE98C0097C2A4 /* OpenCV+highgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenCV+highgui.h"; sourceTree = "<group>"; };
+		70C587421A9BE98C0097C2A4 /* OpenCV+highgui.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "OpenCV+highgui.mm"; sourceTree = "<group>"; };
+		70C587431A9BE98C0097C2A4 /* OpenCV+imgproc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenCV+imgproc.h"; sourceTree = "<group>"; };
+		70C587441A9BE98C0097C2A4 /* OpenCV+imgproc.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "OpenCV+imgproc.mm"; sourceTree = "<group>"; };
+		70C587451A9BE98C0097C2A4 /* OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
+		70C587461A9BE98C0097C2A4 /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +95,7 @@
 		70C5871F1A9BE82E0097C2A4 /* OpenCViOS */ = {
 			isa = PBXGroup;
 			children = (
+				70C5873C1A9BE98C0097C2A4 /* Bridge */,
 				70C587221A9BE82E0097C2A4 /* OpenCViOS.h */,
 				70C587201A9BE82E0097C2A4 /* Supporting Files */,
 			);
@@ -114,6 +135,23 @@
 			path = Libraries;
 			sourceTree = "<group>";
 		};
+		70C5873C1A9BE98C0097C2A4 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				70C5873D1A9BE98C0097C2A4 /* Mat+raw.h */,
+				70C5873E1A9BE98C0097C2A4 /* Mat.h */,
+				70C5873F1A9BE98C0097C2A4 /* Mat.mm */,
+				70C587401A9BE98C0097C2A4 /* Mat.swift */,
+				70C587411A9BE98C0097C2A4 /* OpenCV+highgui.h */,
+				70C587421A9BE98C0097C2A4 /* OpenCV+highgui.mm */,
+				70C587431A9BE98C0097C2A4 /* OpenCV+imgproc.h */,
+				70C587441A9BE98C0097C2A4 /* OpenCV+imgproc.mm */,
+				70C587451A9BE98C0097C2A4 /* OpenCV.h */,
+				70C587461A9BE98C0097C2A4 /* OpenCV.mm */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -121,7 +159,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C587481A9BE98C0097C2A4 /* Mat.h in Headers */,
+				70C5874B1A9BE98C0097C2A4 /* OpenCV+highgui.h in Headers */,
+				70C587471A9BE98C0097C2A4 /* Mat+raw.h in Headers */,
+				70C5874F1A9BE98C0097C2A4 /* OpenCV.h in Headers */,
 				70C587231A9BE82E0097C2A4 /* OpenCViOS.h in Headers */,
+				70C5874D1A9BE98C0097C2A4 /* OpenCV+imgproc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70C587501A9BE98C0097C2A4 /* OpenCV.mm in Sources */,
+				70C5874E1A9BE98C0097C2A4 /* OpenCV+imgproc.mm in Sources */,
+				70C5874A1A9BE98C0097C2A4 /* Mat.swift in Sources */,
+				70C587491A9BE98C0097C2A4 /* Mat.mm in Sources */,
+				70C5874C1A9BE98C0097C2A4 /* OpenCV+highgui.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
