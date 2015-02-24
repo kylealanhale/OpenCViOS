@@ -12,14 +12,14 @@
 		70C587301A9BE82E0097C2A4 /* OpenCViOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C5872F1A9BE82E0097C2A4 /* OpenCViOSTests.swift */; };
 		70C5873B1A9BE9150097C2A4 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C5873A1A9BE9150097C2A4 /* opencv2.framework */; };
 		70C587471A9BE98C0097C2A4 /* Mat+raw.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C5873D1A9BE98C0097C2A4 /* Mat+raw.h */; };
-		70C587481A9BE98C0097C2A4 /* Mat.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C5873E1A9BE98C0097C2A4 /* Mat.h */; };
+		70C587481A9BE98C0097C2A4 /* Mat.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C5873E1A9BE98C0097C2A4 /* Mat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70C587491A9BE98C0097C2A4 /* Mat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C5873F1A9BE98C0097C2A4 /* Mat.mm */; };
 		70C5874A1A9BE98C0097C2A4 /* Mat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C587401A9BE98C0097C2A4 /* Mat.swift */; };
-		70C5874B1A9BE98C0097C2A4 /* OpenCV+highgui.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587411A9BE98C0097C2A4 /* OpenCV+highgui.h */; };
+		70C5874B1A9BE98C0097C2A4 /* OpenCV+highgui.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587411A9BE98C0097C2A4 /* OpenCV+highgui.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70C5874C1A9BE98C0097C2A4 /* OpenCV+highgui.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C587421A9BE98C0097C2A4 /* OpenCV+highgui.mm */; };
-		70C5874D1A9BE98C0097C2A4 /* OpenCV+imgproc.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587431A9BE98C0097C2A4 /* OpenCV+imgproc.h */; };
+		70C5874D1A9BE98C0097C2A4 /* OpenCV+imgproc.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587431A9BE98C0097C2A4 /* OpenCV+imgproc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70C5874E1A9BE98C0097C2A4 /* OpenCV+imgproc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C587441A9BE98C0097C2A4 /* OpenCV+imgproc.mm */; };
-		70C5874F1A9BE98C0097C2A4 /* OpenCV.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587451A9BE98C0097C2A4 /* OpenCV.h */; };
+		70C5874F1A9BE98C0097C2A4 /* OpenCV.h in Headers */ = {isa = PBXBuildFile; fileRef = 70C587451A9BE98C0097C2A4 /* OpenCV.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70C587501A9BE98C0097C2A4 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 70C587461A9BE98C0097C2A4 /* OpenCV.mm */; };
 /* End PBXBuildFile section */
 

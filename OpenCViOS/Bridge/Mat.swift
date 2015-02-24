@@ -9,22 +9,22 @@
 import Foundation
 
 extension Mat {
-    convenience init(rows: Int, cols: Int, type: MatType, data: UnsafeMutablePointer<Void>, step: Int = 0) {
+    public convenience init(rows: Int, cols: Int, type: MatType, data: UnsafeMutablePointer<Void>, step: Int = 0) {
         self.init(rows: rows, cols: cols, type: type.rawValue, data: data, step: step)
     }
-    var step: MatStep {
+    public var step: MatStep {
         return MatStep(mat: self)
     }
 }
 
-struct MatStep {
+public struct MatStep {
     let mat: Mat
-    subscript(index: Int) -> Int {
+    public subscript(index: Int) -> Int {
         return mat.stepAtIndex(index)
     }
 }
 
-enum MatType: Int {
+public enum MatType: Int {
     case CV_USRTYPE1
     case CV_8U, CV_8UC1, CV_8UC2, CV_8UC3, CV_8UC4
     case CV_8S, CV_8SC1, CV_8SC2, CV_8SC3, CV_8SC4
@@ -34,7 +34,7 @@ enum MatType: Int {
     case CV_32F, CV_32FC1, CV_32FC2, CV_32FC3, CV_32FC4
     case CV_64F, CV_64FC1, CV_64FC2, CV_64FC3, CV_64FC4
     
-    var rawValue: Int {
+    public var rawValue: Int {
         switch self {
         case .CV_8U:
             return 0
