@@ -15,6 +15,10 @@ public func boundingRect(points: Mat!) -> CGRect {
     return OpenCV.boundingRectForPointsInMat(points)
 }
 
+public func countNonZero(src: Mat!) -> Int {
+    return OpenCV.countNonZeroForImage(src)
+}
+
 public func cvtColor(src: Mat!, inout dst: Mat!, code: ColorConversionCode, dstCn: Int = 0) {
     var newDst: Mat?
     OpenCV.cvtColorWithSrc(src, dst: &newDst, code: code.rawValue, dstCn: dstCn)

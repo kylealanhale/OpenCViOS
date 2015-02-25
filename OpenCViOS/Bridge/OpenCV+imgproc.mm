@@ -24,6 +24,11 @@
     return [OpenCV fromRect:cv::boundingRect(points.rawMat)];
 }
 
++ (NSInteger)countNonZeroForImage:(Mat *)src
+{
+    return cv::countNonZero(src.rawMat);
+}
+
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn
 {
     cv::Mat rawDst;
