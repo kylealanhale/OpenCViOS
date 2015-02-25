@@ -21,19 +21,22 @@ public func countNonZero(src: Mat!) -> Int {
 
 public func cvtColor(src: Mat!, inout dst: Mat!, code: ColorConversionCode, dstCn: Int = 0) {
     var newDst: Mat?
+    
     OpenCV.cvtColorWithSrc(src, dst: &newDst, code: code.rawValue, dstCn: dstCn)
+    
     dst = newDst
 }
 
 public func drawContours(image: Mat!, contours: [[CGPoint]], contourIdx: Int, color: [Double], thickness: Int = 1, lineType: LineType = .Connected8, hierarchy: [[Int]]? = nil, maxLevel: Int = Int(Int32.max), offset: CGPoint = CGPointZero) {
     let wrappedContours = contours.map { $0.map { NSValue(CGPoint: $0) } }
-    let wrappedColor = color.map { NSNumber(double: $0) }
-    OpenCV.drawContours(image, contours: wrappedContours, contourIdx: contourIdx, color: wrappedColor, thickness: thickness, lineType: lineType.rawValue, hierarchy: hierarchy, maxLevel: maxLevel, offset: offset)
+    
+    OpenCV.drawContours(image, contours: wrappedContours, contourIdx: contourIdx, color: color, thickness: thickness, lineType: lineType.rawValue, hierarchy: hierarchy, maxLevel: maxLevel, offset: offset)
 }
 
 public func findContours(image: Mat!, inout contours: [[CGPoint]], inout hierarchy: [[Int]], mode: RetrievalMode, method: ContourApproximationMode, offset: CGPoint = CGPointZero) {
     var newContours: NSArray?
     var newHierarchy: NSArray?
+    
     OpenCV.findContoursWithImage(image, contours: &newContours, hierarchy: &newHierarchy, mode: mode.rawValue, method: method.rawValue, offset: offset)
     
     if let newContours = newContours as? [[NSValue]] {
@@ -50,19 +53,29 @@ public func getStructuringElement(shape: Int, ksize: CGSize, anchor: CGPoint = C
 
 public func morphologyEx(src: Mat!, inout dst: Mat!, op: Int, kernel: Mat!, anchor: CGPoint = CGPoint(x: -1, y: -1), iterations: Int = 1, borderType: BorderType = .Constant, borderValue: [Double]? = nil) {
     var newDst: Mat?
+    
     OpenCV.morphologyExWithSrc(src, dst: &newDst, op: op, kernel: kernel, anchor: anchor, iterations: iterations, borderType: borderType.rawValue, borderValue: borderValue)
+    
     dst = newDst
 }
 
 public func pyrDown(src: Mat!, inout dst: Mat!, dstsize: CGSize = CGSizeZero, borderType: BorderType = .Reflect101) {
     var newDst: Mat?
+    
     OpenCV.pyrDownWithSrc(src, dst: &newDst, dstsize: dstsize, borderType: borderType.rawValue)
+    
     dst = newDst
+}
+
+public func rectangle(img: Mat!, rec: CGRect, color: [Double], thickness: Int = 1, lineType: LineType = .Connected8, shift: Int = 0) {
+    OpenCV.rectangleInImage(img, rec: rec, color: color, thickness: thickness, lineType: lineType.rawValue, shift: shift)
 }
 
 public func threshold(src: Mat!, inout dst: Mat!, thresh: Double, maxval: Double, type: ThresholdType) -> Double {
     var newDst: Mat?
+    
     let newThresh = OpenCV.thresholdWithSrc(src, dst: &newDst, thresh: CGFloat(thresh), maxval: CGFloat(maxval), type: type.rawValue)
+    
     dst = newDst
     
     return Double(newThresh)

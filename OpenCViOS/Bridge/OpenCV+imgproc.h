@@ -26,5 +26,7 @@
 
 + (void)pyrDownWithSrc:(Mat *)src dst:(Mat **)dst dstsize:(CGSize)size borderType:(NSInteger)borderType;
 
++ (void)rectangleInImage:(Mat *)img rec:(CGRect)rec color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType shift:(NSInteger)shift;
+
 + (CGFloat)thresholdWithSrc:(Mat *)src dst:(Mat **)dst thresh:(CGFloat)thresh maxval:(CGFloat)maxval type:(NSInteger)type;
 @end

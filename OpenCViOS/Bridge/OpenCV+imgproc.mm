@@ -82,6 +82,13 @@
     *dst = [[Mat alloc] initWithRawMat:rawDst];
 }
 
++ (void)rectangleInImage:(Mat *)img rec:(CGRect)rec color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType shift:(NSInteger)shift
+{
+    cv::Mat rawImg = img.rawMat;
+    
+    cv::rectangle(rawImg, [OpenCV toRect:rec], [OpenCV toScalar:color], (int)thickness, (int)lineType, (int)shift);
+}
+
 + (CGFloat)thresholdWithSrc:(Mat *)src dst:(Mat **)dst thresh:(CGFloat)thresh maxval:(CGFloat)maxval type:(NSInteger)type
 {
     cv::Mat rawDst;
