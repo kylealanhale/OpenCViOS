@@ -13,6 +13,20 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 @implementation OpenCV (imgproc)
++ (CGRect)boundingRectForPoints:(NSArray *)points
+{
+    std::vector<cv::Point> rawPoints = std::vector<cv::Point>();
+    for (NSValue *boxedPoint in points) {
+        rawPoints.push_back([OpenCV toRawPoint:[boxedPoint CGPointValue]]);
+    }
+    
+    return [OpenCV fromRawRect:cv::boundingRect(rawPoints)];
+}
++ (CGRect)boundingRectForPointsInMat:(Mat *)points
+{
+    return [OpenCV fromRawRect:cv::boundingRect(points.rawMat)];
+}
+
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code
 {
     [self cvtColorWithSrc:src dst:dst code:code dstCn:0];

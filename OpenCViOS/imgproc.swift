@@ -8,6 +8,13 @@
 
 import UIKit
 
+public func boundingRect(points: [CGPoint]) -> CGRect {
+    return OpenCV.boundingRectForPoints(points.map { NSValue(CGPoint: $0) })
+}
+public func boundingRect(points: Mat!) -> CGRect {
+    return OpenCV.boundingRectForPointsInMat(points)
+}
+
 public func cvtColor(src: Mat!, inout dst: Mat!, code: ColorConversionCode, dstCn: Int = 0) {
     var newDst: Mat?
     OpenCV.cvtColorWithSrc(src, dst: &newDst, code: code.rawValue, dstCn: dstCn)

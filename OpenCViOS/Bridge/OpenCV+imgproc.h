@@ -9,6 +9,9 @@
 #import "OpenCV.h"
 
 @interface OpenCV (imgproc)
++ (CGRect)boundingRectForPoints:(NSArray *)points;
++ (CGRect)boundingRectForPointsInMat:(Mat *)points;
+
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code;
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn;
 
