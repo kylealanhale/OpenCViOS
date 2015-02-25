@@ -24,6 +24,13 @@
     return [OpenCV fromRect:cv::boundingRect(points.rawMat)];
 }
 
++ (void)drawContours:(Mat *)image contours:(NSArray *)contours contourIdx:(NSInteger)contourIdx color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType hierarchy:(NSArray *)hierarchy maxLevel:(NSInteger)maxLevel offset:(CGPoint)offset
+{
+    cv::InputArray rawHierarchy = hierarchy ? [OpenCV toHierarchy:hierarchy] : cv::noArray();
+
+    cv::drawContours(image.rawMat, [OpenCV toContours:contours], (int)contourIdx, [OpenCV toScalar:color], (int)thickness, (int)lineType, rawHierarchy);
+}
+
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn
 {
     cv::Mat rawDst;

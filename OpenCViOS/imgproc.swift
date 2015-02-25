@@ -15,6 +15,12 @@ public func boundingRect(points: Mat!) -> CGRect {
     return OpenCV.boundingRectForPointsInMat(points)
 }
 
+public func drawContours(image: Mat!, contours: [[CGPoint]], contourIdx: Int, color: [Double], thickness: Int = 1, lineType: LineType = .Connected8, hierarchy: [[Int]]? = nil, maxLevel: Int = Int(Int32.max), offset: CGPoint = CGPointZero) {
+    let wrappedContours = contours.map { $0.map { NSValue(CGPoint: $0) } }
+    let wrappedColor = color.map { NSNumber(double: $0) }
+    OpenCV.drawContours(image, contours: wrappedContours, contourIdx: contourIdx, color: wrappedColor, thickness: thickness, lineType: lineType.rawValue, hierarchy: hierarchy, maxLevel: maxLevel, offset: offset)
+}
+
 public func cvtColor(src: Mat!, inout dst: Mat!, code: ColorConversionCode, dstCn: Int = 0) {
     var newDst: Mat?
     OpenCV.cvtColorWithSrc(src, dst: &newDst, code: code.rawValue, dstCn: dstCn)
@@ -374,4 +380,12 @@ public enum ContourApproximationMode: Int {
     TC89_L1   = 3,
     /** applies one of the flavors of the Teh-Chin chain approximation algorithm @cite TehChin89 */
     TC89_KCOS = 4
+}
+
+//! type of line
+public enum LineType: Int {
+    case Filled  = -1,
+    Connected4  = 4, //!< 4-connected line
+    Connected8  = 8, //!< 8-connected line
+    AntiAliased = 16 //!< antialiased line
 }
