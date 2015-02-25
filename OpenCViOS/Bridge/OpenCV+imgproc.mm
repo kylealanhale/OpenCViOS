@@ -27,10 +27,6 @@
     return [OpenCV fromRawRect:cv::boundingRect(points.rawMat)];
 }
 
-+ (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code
-{
-    [self cvtColorWithSrc:src dst:dst code:code dstCn:0];
-}
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn
 {
     cv::Mat rawDst;
@@ -38,10 +34,6 @@
     *dst = [[Mat alloc] initWithRawMat:rawDst];
 }
 
-+ (void)findContoursWithImage:(Mat *)image contours:(NSArray **)contours hierarchy:(NSArray **)hierarchy mode:(NSInteger)mode method:(NSInteger)method
-{
-    [self findContoursWithImage:image contours:contours hierarchy:hierarchy mode:mode method:method offset:CGPointZero];
-}
 + (void)findContoursWithImage:(Mat *)image contours:(NSArray **)contours hierarchy:(NSArray **)hierarchy mode:(NSInteger)mode method:(NSInteger)method offset:(CGPoint)offset
 {
     std::vector<std::vector<cv::Point>> rawContours;
@@ -70,22 +62,12 @@
     *hierarchy = newHierarchy;
 }
 
-+ (Mat *)getStructuringElementWithShape:(NSInteger)shape ksize:(CGSize)ksize
-{
-    return [self getStructuringElementWithShape:shape ksize:ksize anchor:CGPointMake(-1, -1)];
-}
 + (Mat *)getStructuringElementWithShape:(NSInteger)shape ksize:(CGSize)ksize anchor:(CGPoint)anchor
 {
     cv::Mat rawMat = cv::getStructuringElement((int)shape, [OpenCV toRawSize:ksize], [OpenCV toRawPoint:anchor]);
     return [[Mat alloc] initWithRawMat:rawMat];
 }
 
-+ (void)morphologyExWithSrc:(Mat *)src dst:(Mat **)dst op:(NSInteger)op kernel:(Mat *)kernel
-{
-    cv::Scalar rawBorderValue = cv::morphologyDefaultBorderValue();
-    NSArray *borderValue = @[@(rawBorderValue[0]), @(rawBorderValue[1]), @(rawBorderValue[2]), @(rawBorderValue[3])];
-    [self morphologyExWithSrc:src dst:dst op:op kernel:kernel anchor:CGPointMake(-1, -1) iterations:1 borderType:cv::BORDER_CONSTANT borderValue:borderValue];
-}
 + (void)morphologyExWithSrc:(Mat *)src dst:(Mat **)dst op:(NSInteger)op kernel:(Mat *)kernel anchor:(CGPoint)anchor iterations:(NSInteger)iterations borderType:(NSInteger)borderType borderValue:(NSArray *)borderValue
 {
     cv::Scalar rawBorderValue;
@@ -104,10 +86,6 @@
     *dst = [[Mat alloc] initWithRawMat:rawDst];
 }
 
-+ (void)pyrDownWithSrc:(Mat *)src dst:(Mat **)dst
-{
-    [self pyrDownWithSrc:src dst:dst dstsize:CGSizeZero borderType:cv::BORDER_DEFAULT];
-}
 + (void)pyrDownWithSrc:(Mat *)src dst:(Mat **)dst dstsize:(CGSize)size borderType:(NSInteger)borderType
 {
     cv::Mat rawDst;
