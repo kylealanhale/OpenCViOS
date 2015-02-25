@@ -10,6 +10,6 @@
 #include <opencv2/core.hpp>
 
 @interface Mat (raw)
-@property (nonatomic, readonly) cv::Mat *rawMat;
-- (instancetype)initWithRawMat:(cv::Mat *)rawMat;
+@property (nonatomic, readonly) cv::Mat rawMat;
+- (instancetype)initWithRawMat:(cv::Mat)rawMat;
 @end

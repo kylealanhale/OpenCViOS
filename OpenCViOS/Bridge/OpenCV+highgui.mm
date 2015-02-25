@@ -16,6 +16,6 @@
 + (Mat *)imread:(NSString *)filename flags:(IMRead)flags
 {
     cv::Mat rawMat = cv::imread([filename UTF8String], flags);
-    return [[Mat alloc] initWithRawMat:&rawMat];
+    return [[Mat alloc] initWithRawMat:rawMat];
 }
 @end

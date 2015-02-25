@@ -9,7 +9,7 @@
 import Foundation
 
 extension Mat {
-    public convenience init(rows: Int, cols: Int, type: MatType, data: UnsafeMutablePointer<Void>, step: Int = 0) {
+    public convenience init!(rows: Int, cols: Int, type: MatType, data: UnsafeMutablePointer<Void>, step: Int = 0) {
         self.init(rows: rows, cols: cols, type: type.rawValue, data: data, step: step)
     }
     public var step: MatStep {

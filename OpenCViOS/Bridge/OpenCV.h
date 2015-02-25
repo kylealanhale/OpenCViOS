@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Kyle Alan Hale. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface OpenCV : NSObject
+#import "Mat.h"
+
+@interface OpenCV: NSObject
 
 @end
 
