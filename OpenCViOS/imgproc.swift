@@ -38,7 +38,7 @@ public func getStructuringElement(shape: Int, ksize: CGSize, anchor: CGPoint = C
     return OpenCV.getStructuringElementWithShape(shape, ksize: ksize, anchor: anchor)
 }
 
-public func morphologyEx(src: Mat!, inout dst: Mat!, op: Int, kernel: Mat!, anchor: CGPoint = CGPoint(x: -1, y: -1), iterations: Int = 1, borderType: BorderType = .Constant, borderValue: [CGFloat]? = nil) {
+public func morphologyEx(src: Mat!, inout dst: Mat!, op: Int, kernel: Mat!, anchor: CGPoint = CGPoint(x: -1, y: -1), iterations: Int = 1, borderType: BorderType = .Constant, borderValue: [Double]? = nil) {
     var newDst: Mat?
     OpenCV.morphologyExWithSrc(src, dst: &newDst, op: op, kernel: kernel, anchor: anchor, iterations: iterations, borderType: borderType.rawValue, borderValue: borderValue)
     dst = newDst
@@ -50,12 +50,12 @@ public func pyrDown(src: Mat!, inout dst: Mat!, dstsize: CGSize = CGSizeZero, bo
     dst = newDst
 }
 
-public func threshold(src: Mat!, inout dst: Mat!, thresh: CGFloat, maxval: CGFloat, type: ThresholdType) -> CGFloat {
+public func threshold(src: Mat!, inout dst: Mat!, thresh: Double, maxval: Double, type: ThresholdType) -> Double {
     var newDst: Mat?
-    let newThresh = OpenCV.thresholdWithSrc(src, dst: &newDst, thresh: thresh, maxval: maxval, type: type.rawValue)
+    let newThresh = OpenCV.thresholdWithSrc(src, dst: &newDst, thresh: CGFloat(thresh), maxval: CGFloat(maxval), type: type.rawValue)
     dst = newDst
     
-    return newThresh
+    return Double(newThresh)
 }
 
 

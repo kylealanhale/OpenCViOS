@@ -40,7 +40,7 @@
 
 + (instancetype)zeroesWithSize:(CGSize)size type:(NSInteger)type
 {
-    cv::Mat mat = cv::Mat::zeros([OpenCV toRawSize:size], int(type));
+    cv::Mat mat = cv::Mat::zeros([OpenCV toSize:size], int(type));
     return [[self alloc] initWithRawMat:mat];
 }
 

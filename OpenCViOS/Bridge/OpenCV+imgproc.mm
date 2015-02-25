@@ -15,22 +15,21 @@
 @implementation OpenCV (imgproc)
 + (CGRect)boundingRectForPoints:(NSArray *)points
 {
-    std::vector<cv::Point> rawPoints = std::vector<cv::Point>();
-    for (NSValue *boxedPoint in points) {
-        rawPoints.push_back([OpenCV toRawPoint:[boxedPoint CGPointValue]]);
-    }
+    std::vector<cv::Point> rawPoints = [OpenCV toPointVector:points];
     
-    return [OpenCV fromRawRect:cv::boundingRect(rawPoints)];
+    return [OpenCV fromRect:cv::boundingRect(rawPoints)];
 }
 + (CGRect)boundingRectForPointsInMat:(Mat *)points
 {
-    return [OpenCV fromRawRect:cv::boundingRect(points.rawMat)];
+    return [OpenCV fromRect:cv::boundingRect(points.rawMat)];
 }
 
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn
 {
     cv::Mat rawDst;
+    
     cv::cvtColor(src.rawMat, rawDst, (int)code, (int)dstCn);
+    
     *dst = [[Mat alloc] initWithRawMat:rawDst];
 }
 
@@ -39,64 +38,44 @@
     std::vector<std::vector<cv::Point>> rawContours;
     std::vector<cv::Vec4i> rawHierarchy;
     
-    cv::findContours(image.rawMat, rawContours, rawHierarchy, (int)mode, (int)method, [OpenCV toRawPoint:offset]);
+    cv::findContours(image.rawMat, rawContours, rawHierarchy, (int)mode, (int)method, [OpenCV toPoint:offset]);
     
-    NSMutableArray *newContours = [NSMutableArray array];
-    for (std::vector<cv::Point> rawPoints : rawContours) {
-        NSMutableArray *points = [NSMutableArray array];
-        for (cv::Point point : rawPoints) {
-            [points addObject:[NSValue valueWithCGPoint:[OpenCV fromRawPoint:point]]];
-        }
-        [newContours addObject:points];
-    }
-    *contours = newContours;
-    
-    NSMutableArray *newHierarchy = [NSMutableArray array];
-    for (cv::Vec4i rawHierarchyInstructions : rawHierarchy) {
-        NSMutableArray *hierarchyInstructions = [NSMutableArray array];
-        for (int index = 0; index < 4; index++) {
-            [hierarchyInstructions addObject:hierarchy[index]];
-        }
-        [newHierarchy addObject:hierarchyInstructions];
-    }
-    *hierarchy = newHierarchy;
+    *contours = [OpenCV fromContours:rawContours];
+    *hierarchy = [OpenCV fromHierarchy:rawHierarchy];
 }
 
 + (Mat *)getStructuringElementWithShape:(NSInteger)shape ksize:(CGSize)ksize anchor:(CGPoint)anchor
 {
-    cv::Mat rawMat = cv::getStructuringElement((int)shape, [OpenCV toRawSize:ksize], [OpenCV toRawPoint:anchor]);
+    cv::Mat rawMat = cv::getStructuringElement((int)shape, [OpenCV toSize:ksize], [OpenCV toPoint:anchor]);
+    
     return [[Mat alloc] initWithRawMat:rawMat];
 }
 
 + (void)morphologyExWithSrc:(Mat *)src dst:(Mat **)dst op:(NSInteger)op kernel:(Mat *)kernel anchor:(CGPoint)anchor iterations:(NSInteger)iterations borderType:(NSInteger)borderType borderValue:(NSArray *)borderValue
 {
-    cv::Scalar rawBorderValue;
-    if (borderValue) {
-        rawBorderValue = cv::Scalar();
-        for (int index = 0; index < borderValue.count; index++) {
-            rawBorderValue[index] = [borderValue[index] doubleValue];
-        }
-    }
-    else {
-        rawBorderValue = cv::morphologyDefaultBorderValue();
-    }
-    
+    cv::Scalar rawBorderValue = borderValue ? [OpenCV toScalar:borderValue] : cv::morphologyDefaultBorderValue();
     cv::Mat rawDst;
-    cv::morphologyEx(src.rawMat, rawDst, (int)op, kernel.rawMat, [OpenCV toRawPoint:anchor], (int)iterations, (int)borderType, rawBorderValue);
+    
+    cv::morphologyEx(src.rawMat, rawDst, (int)op, kernel.rawMat, [OpenCV toPoint:anchor], (int)iterations, (int)borderType, rawBorderValue);
+    
     *dst = [[Mat alloc] initWithRawMat:rawDst];
 }
 
 + (void)pyrDownWithSrc:(Mat *)src dst:(Mat **)dst dstsize:(CGSize)size borderType:(NSInteger)borderType
 {
     cv::Mat rawDst;
-    cv::pyrDown(src.rawMat, rawDst, [OpenCV toRawSize:size], (int)borderType);
+    
+    cv::pyrDown(src.rawMat, rawDst, [OpenCV toSize:size], (int)borderType);
+    
     *dst = [[Mat alloc] initWithRawMat:rawDst];
 }
 
 + (CGFloat)thresholdWithSrc:(Mat *)src dst:(Mat **)dst thresh:(CGFloat)thresh maxval:(CGFloat)maxval type:(NSInteger)type
 {
     cv::Mat rawDst;
+    
     CGFloat threshold = cv::threshold(src.rawMat, rawDst, thresh, maxval, (int)type);
+    
     *dst = [[Mat alloc] initWithRawMat:rawDst];
     return threshold;
 }

@@ -12,6 +12,8 @@
 + (CGRect)boundingRectForPoints:(NSArray *)points;
 + (CGRect)boundingRectForPointsInMat:(Mat *)points;
 
++ (void)drawContours:(Mat *)image contours:(NSArray *)contours contourIdx:(NSInteger)contourIdx color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType hierarchy:(NSArray *)hierarchy maxLevel:(NSInteger)maxLevel offset:(CGPoint)offset;
+
 + (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn;
 
 + (void)findContoursWithImage:(Mat *)image contours:(NSArray **)contours hierarchy:(NSArray **)hierarchy mode:(NSInteger)mode method:(NSInteger)method offset:(CGPoint)offset;
