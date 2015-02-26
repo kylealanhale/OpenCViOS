@@ -94,7 +94,7 @@
 + (cv::Vec4d)toVec4d:(NSArray *)wrappedVector
 {
     cv::Vec4d rawVector = cv::Vec4d();
-    for (int index = 0; index < 4; index++) {
+    for (int index = 0; index < wrappedVector.count; index++) {
         rawVector[index] = [wrappedVector[index] doubleValue];
     }
     return rawVector;
@@ -111,7 +111,7 @@
 + (cv::Vec4i)toVec4i:(NSArray *)wrappedVector
 {
     cv::Vec4i rawVector = cv::Vec4i();
-    for (int index = 0; index < 4; index++) {
+    for (int index = 0; index < wrappedVector.count; index++) {
         rawVector[index] = [wrappedVector[index] intValue];
     }
     return rawVector;

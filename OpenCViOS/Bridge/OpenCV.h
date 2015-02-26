@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Mat.h"
+#import "OpenCVMat.h"
 
 @interface OpenCV: NSObject
 

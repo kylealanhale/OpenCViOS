@@ -10,23 +10,23 @@
 
 @interface OpenCV (imgproc)
 + (CGRect)boundingRectForPoints:(NSArray *)points;
-+ (CGRect)boundingRectForPointsInMat:(Mat *)points;
++ (CGRect)boundingRectForPointsInMat:(OpenCVMat *)points;
 
-+ (NSInteger)countNonZeroForImage:(Mat *)src;
++ (NSInteger)countNonZeroForImage:(OpenCVMat *)src;
 
-+ (void)cvtColorWithSrc:(Mat *)src dst:(Mat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn;
++ (void)cvtColorWithSrc:(OpenCVMat *)src dst:(OpenCVMat **)dst code:(NSInteger)code dstCn:(NSInteger)dstCn;
 
-+ (void)drawContours:(Mat *)image contours:(NSArray *)contours contourIdx:(NSInteger)contourIdx color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType hierarchy:(NSArray *)hierarchy maxLevel:(NSInteger)maxLevel offset:(CGPoint)offset;
++ (void)drawContours:(OpenCVMat *)image contours:(NSArray *)contours contourIdx:(NSInteger)contourIdx color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType hierarchy:(NSArray *)hierarchy maxLevel:(NSInteger)maxLevel offset:(CGPoint)offset;
 
-+ (void)findContoursWithImage:(Mat *)image contours:(NSArray **)contours hierarchy:(NSArray **)hierarchy mode:(NSInteger)mode method:(NSInteger)method offset:(CGPoint)offset;
++ (void)findContoursWithImage:(OpenCVMat *)image contours:(NSArray **)contours hierarchy:(NSArray **)hierarchy mode:(NSInteger)mode method:(NSInteger)method offset:(CGPoint)offset;
 
-+ (Mat *)getStructuringElementWithShape:(NSInteger)shape ksize:(CGSize)ksize anchor:(CGPoint)anchor;
++ (OpenCVMat *)getStructuringElementWithShape:(NSInteger)shape ksize:(CGSize)ksize anchor:(CGPoint)anchor;
 
-+ (void)morphologyExWithSrc:(Mat *)src dst:(Mat **)dst op:(NSInteger)op kernel:(Mat *)kernel anchor:(CGPoint)anchor iterations:(NSInteger)iterations borderType:(NSInteger)borderType borderValue:(NSArray *)borderValue;
++ (void)morphologyExWithSrc:(OpenCVMat *)src dst:(OpenCVMat **)dst op:(NSInteger)op kernel:(OpenCVMat *)kernel anchor:(CGPoint)anchor iterations:(NSInteger)iterations borderType:(NSInteger)borderType borderValue:(NSArray *)borderValue;
 
-+ (void)pyrDownWithSrc:(Mat *)src dst:(Mat **)dst dstsize:(CGSize)size borderType:(NSInteger)borderType;
++ (void)pyrDownWithSrc:(OpenCVMat *)src dst:(OpenCVMat **)dst dstsize:(CGSize)size borderType:(NSInteger)borderType;
 
-+ (void)rectangleInImage:(Mat *)img rec:(CGRect)rec color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType shift:(NSInteger)shift;
++ (void)rectangleInImage:(OpenCVMat *)img rec:(CGRect)rec color:(NSArray *)color thickness:(NSInteger)thickness lineType:(NSInteger)lineType shift:(NSInteger)shift;
 
-+ (CGFloat)thresholdWithSrc:(Mat *)src dst:(Mat **)dst thresh:(CGFloat)thresh maxval:(CGFloat)maxval type:(NSInteger)type;
++ (CGFloat)thresholdWithSrc:(OpenCVMat *)src dst:(OpenCVMat **)dst thresh:(CGFloat)thresh maxval:(CGFloat)maxval type:(NSInteger)type;
 @end

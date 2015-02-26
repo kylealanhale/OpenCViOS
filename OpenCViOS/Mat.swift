@@ -8,21 +8,56 @@
 
 import Foundation
 
-extension Mat {
-    public convenience init!(rows: Int, cols: Int, type: MatType, data: UnsafeMutablePointer<Void>, step: Int = 0) {
-        self.init(rows: rows, cols: cols, type: type.rawValue, data: data, step: step)
+public class Mat: Printable {
+    var bridgedMat: OpenCVMat!
+    private var bridgedStep: MatStep!
+    
+    // MARK: Life cycle
+    public var description: String { return "<Mat (\(bridgedMat.description))>" }
+    
+    init() {
+        bridgedMat = OpenCVMat()
+        setup()
     }
-    public var step: MatStep {
-        return MatStep(mat: self)
+    init(bridgedMat: OpenCVMat!) {
+        self.bridgedMat = bridgedMat
     }
+    public init!(rows: Int, cols: Int, type: MatType, data: UnsafeMutablePointer<Void>, step: Int = 0) {
+        bridgedMat = OpenCVMat(rows: rows, cols: cols, type: type.rawValue, data: data, step: step)
+        setup()
+    }
+    public init!(mat: Mat!, regionOfInterest: CGRect) {
+        bridgedMat = OpenCVMat(mat: mat.bridgedMat, roi: regionOfInterest)
+    }
+    
+    public class func zeroes(size: CGSize, type: MatType) -> Mat! {
+        return Mat(bridgedMat: OpenCVMat.zeroesWithSize(size, type: type.rawValue))
+    }
+    
+    private func setup() {
+        bridgedStep = MatStep(bridgedMat: bridgedMat)
+    }
+    
+    // MARK: Properties
+    public var rows: Int { return bridgedMat.rows }
+    public var cols: Int { return bridgedMat.cols }
+    public var step: MatStep { return bridgedStep }
+    public var data: RawMatData { return bridgedMat.data }
+    
+    // MARK: Methods
+    public func elemSize() -> Int { return bridgedMat.elemSize() }
+    public func total() -> Int { return bridgedMat.total() }
+    public func size() -> CGSize { return bridgedMat.size() }
 }
 
 public struct MatStep {
-    let mat: Mat
+    private let bridgedMat: OpenCVMat
     public subscript(index: Int) -> Int {
-        return mat.stepAtIndex(index)
+        return bridgedMat.stepAtIndex(index)
     }
 }
+
+public typealias RawMatData = UnsafeMutablePointer<UInt8>
 
 public enum MatType: Int {
     case CV_USRTYPE1

@@ -1,22 +1,22 @@
 //
-//  Mat.mm
+//  OpenCVMat.mm
 //  
 //
 //  Created by Kyle Alan Hale on 2/22/15.
 //
 //
 
-#import "Mat+raw.h"
+#import "OpenCVMat+raw.h"
 #import "OpenCV+raw.h"
 #include <opencv2/core.hpp>
 
-@interface Mat() {
+@interface OpenCVMat() {
     @private
         cv::Mat rawMat;
 }
 @end
 
-@implementation Mat
+@implementation OpenCVMat
 #pragma mark - Life cycle
 - (instancetype)init
 {
@@ -34,6 +34,12 @@
 - (instancetype)initWithRows:(NSInteger)rows cols:(NSInteger)cols type:(NSInteger)type data:(void *)data step:(NSInteger)step
 {
     cv::Mat mat = cv::Mat((int)rows, (int)cols, (int)type, data, step);
+    self = [self initWithRawMat:mat];
+    return self;
+}
+- (instancetype)initWithMat:(OpenCVMat *)m roi:(CGRect)roi
+{
+    cv::Mat mat = cv::Mat(m.rawMat, [OpenCV toRect:roi]);
     self = [self initWithRawMat:mat];
     return self;
 }
@@ -59,6 +65,14 @@
 {
     return rawMat.elemSize();
 }
+- (NSInteger)total
+{
+    return rawMat.total();
+}
+- (CGSize)size
+{
+    return [OpenCV fromSize:rawMat.size()];
+}
 
 #pragma mark - Properties
 - (cv::Mat)rawMat
@@ -77,10 +91,6 @@
 - (unsigned char *)data
 {
     return rawMat.data;
-}
-- (NSInteger)total
-{
-    return rawMat.total();
 }
 - (NSInteger)stepAtIndex:(NSInteger)index
 {

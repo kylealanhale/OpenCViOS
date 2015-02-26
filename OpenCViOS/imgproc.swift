@@ -12,32 +12,32 @@ public func boundingRect(points: [CGPoint]) -> CGRect {
     return OpenCV.boundingRectForPoints(points.map { NSValue(CGPoint: $0) })
 }
 public func boundingRect(points: Mat!) -> CGRect {
-    return OpenCV.boundingRectForPointsInMat(points)
+    return OpenCV.boundingRectForPointsInMat(points.bridgedMat)
 }
 
 public func countNonZero(src: Mat!) -> Int {
-    return OpenCV.countNonZeroForImage(src)
+    return OpenCV.countNonZeroForImage(src.bridgedMat)
 }
 
 public func cvtColor(src: Mat!, inout dst: Mat!, code: ColorConversionCode, dstCn: Int = 0) {
-    var newDst: Mat?
+    var newDst: OpenCVMat?
     
-    OpenCV.cvtColorWithSrc(src, dst: &newDst, code: code.rawValue, dstCn: dstCn)
+    OpenCV.cvtColorWithSrc(src.bridgedMat, dst: &newDst, code: code.rawValue, dstCn: dstCn)
     
-    dst = newDst
+    dst = Mat(bridgedMat: newDst)
 }
 
-public func drawContours(image: Mat!, contours: [[CGPoint]], contourIdx: Int, color: [Double], thickness: Int = 1, lineType: LineType = .Connected8, hierarchy: [[Int]]? = nil, maxLevel: Int = Int(Int32.max), offset: CGPoint = CGPointZero) {
+public func drawContours(image: Mat!, contours: [Contour], contourIdx: Int, color: Scalar, thickness: Int = 1, lineType: LineType = .Connected8, hierarchy: [Vec4i]? = nil, maxLevel: Int = Int(Int32.max), offset: CGPoint = CGPointZero) {
     let wrappedContours = contours.map { $0.map { NSValue(CGPoint: $0) } }
     
-    OpenCV.drawContours(image, contours: wrappedContours, contourIdx: contourIdx, color: color, thickness: thickness, lineType: lineType.rawValue, hierarchy: hierarchy, maxLevel: maxLevel, offset: offset)
+    OpenCV.drawContours(image.bridgedMat, contours: wrappedContours, contourIdx: contourIdx, color: color, thickness: thickness, lineType: lineType.rawValue, hierarchy: hierarchy, maxLevel: maxLevel, offset: offset)
 }
 
-public func findContours(image: Mat!, inout contours: [[CGPoint]], inout hierarchy: [[Int]], mode: RetrievalMode, method: ContourApproximationMode, offset: CGPoint = CGPointZero) {
+public func findContours(image: Mat!, inout contours: [Contour]!, inout hierarchy: [Vec4i]!, mode: RetrievalMode, method: ContourApproximationMode, offset: CGPoint = CGPointZero) {
     var newContours: NSArray?
     var newHierarchy: NSArray?
     
-    OpenCV.findContoursWithImage(image, contours: &newContours, hierarchy: &newHierarchy, mode: mode.rawValue, method: method.rawValue, offset: offset)
+    OpenCV.findContoursWithImage(image.bridgedMat, contours: &newContours, hierarchy: &newHierarchy, mode: mode.rawValue, method: method.rawValue, offset: offset)
     
     if let newContours = newContours as? [[NSValue]] {
         contours = newContours.map { $0.map { $0.CGPointValue() } }
@@ -47,40 +47,43 @@ public func findContours(image: Mat!, inout contours: [[CGPoint]], inout hierarc
     }
 }
 
-public func getStructuringElement(shape: Int, ksize: CGSize, anchor: CGPoint = CGPoint(x: -1, y: -1)) -> Mat! {
-    return OpenCV.getStructuringElementWithShape(shape, ksize: ksize, anchor: anchor)
+public func getStructuringElement(shape: MorphShape, ksize: CGSize, anchor: CGPoint = CGPoint(x: -1, y: -1)) -> Mat! {
+    return Mat(bridgedMat: OpenCV.getStructuringElementWithShape(shape.rawValue, ksize: ksize, anchor: anchor))
 }
 
-public func morphologyEx(src: Mat!, inout dst: Mat!, op: Int, kernel: Mat!, anchor: CGPoint = CGPoint(x: -1, y: -1), iterations: Int = 1, borderType: BorderType = .Constant, borderValue: [Double]? = nil) {
-    var newDst: Mat?
+public func morphologyEx(src: Mat!, inout dst: Mat!, op: MorphType, kernel: Mat!, anchor: CGPoint = CGPoint(x: -1, y: -1), iterations: Int = 1, borderType: BorderType = .Constant, borderValue: Scalar? = nil) {
+    var newDst: OpenCVMat?
     
-    OpenCV.morphologyExWithSrc(src, dst: &newDst, op: op, kernel: kernel, anchor: anchor, iterations: iterations, borderType: borderType.rawValue, borderValue: borderValue)
+    OpenCV.morphologyExWithSrc(src.bridgedMat, dst: &newDst, op: op.rawValue, kernel: kernel.bridgedMat, anchor: anchor, iterations: iterations, borderType: borderType.rawValue, borderValue: borderValue)
     
-    dst = newDst
+    dst = Mat(bridgedMat: newDst)
 }
 
 public func pyrDown(src: Mat!, inout dst: Mat!, dstsize: CGSize = CGSizeZero, borderType: BorderType = .Reflect101) {
-    var newDst: Mat?
+    var newDst: OpenCVMat?
     
-    OpenCV.pyrDownWithSrc(src, dst: &newDst, dstsize: dstsize, borderType: borderType.rawValue)
+    OpenCV.pyrDownWithSrc(src.bridgedMat, dst: &newDst, dstsize: dstsize, borderType: borderType.rawValue)
     
-    dst = newDst
+    dst = Mat(bridgedMat: newDst)
 }
 
-public func rectangle(img: Mat!, rec: CGRect, color: [Double], thickness: Int = 1, lineType: LineType = .Connected8, shift: Int = 0) {
-    OpenCV.rectangleInImage(img, rec: rec, color: color, thickness: thickness, lineType: lineType.rawValue, shift: shift)
+public func rectangle(img: Mat!, rec: CGRect, color: Scalar, thickness: Int = 1, lineType: LineType = .Connected8, shift: Int = 0) {
+    OpenCV.rectangleInImage(img.bridgedMat, rec: rec, color: color, thickness: thickness, lineType: lineType.rawValue, shift: shift)
 }
 
 public func threshold(src: Mat!, inout dst: Mat!, thresh: Double, maxval: Double, type: ThresholdType) -> Double {
-    var newDst: Mat?
+    var newDst: OpenCVMat?
     
-    let newThresh = OpenCV.thresholdWithSrc(src, dst: &newDst, thresh: CGFloat(thresh), maxval: CGFloat(maxval), type: type.rawValue)
+    let newThresh = OpenCV.thresholdWithSrc(src.bridgedMat, dst: &newDst, thresh: CGFloat(thresh), maxval: CGFloat(maxval), type: Int(type.rawValue))
     
-    dst = newDst
+    dst = Mat(bridgedMat: newDst)
     
     return Double(newThresh)
 }
 
+public typealias Scalar = [Double]
+public typealias Contour = [CGPoint]
+public typealias Vec4i = [Int]
 
 public enum BorderType: Int {
     case Constant = 0
@@ -348,18 +351,45 @@ public enum ColorConversionCode: Int {
     case COLORCVT_MAX  = 139
 }
 
-public enum ThresholdType: Int {
-    case Binary     = 0, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{maxval}}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{0}{otherwise}\f]
-    BinaryInv = 1, //!< \f[\texttt{dst} (x,y) =  \fork{0}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{maxval}}{otherwise}\f]
-    Trunc      = 2, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{threshold}}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{src}(x,y)}{otherwise}\f]
-    Tozero     = 3, //!< \f[\texttt{dst} (x,y) =  \fork{\texttt{src}(x,y)}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{0}{otherwise}\f]
-    TozeroInv = 4, //!< \f[\texttt{dst} (x,y) =  \fork{0}{if \(\texttt{src}(x,y) > \texttt{thresh}\)}{\texttt{src}(x,y)}{otherwise}\f]
-    Mask       = 7,
-    Otsu       = 8, //!< flag, use Otsu algorithm to choose the optimal threshold value
-    Triangle   = 16 //!< flag, use Triangle algorithm to choose the optimal threshold value
+public struct ThresholdType : RawOptionSetType, BooleanType {
+    private let value: UInt = 0
+    public init(nilLiteral: ()) {}
+    public init(rawValue value: UInt) { self.value = value }
+    public var boolValue: Bool { return value != 0 }
+    public var rawValue: UInt { return value }
+    public static var allZeros: ThresholdType { return self(rawValue: 0) }
+    
+    public static var Binary: ThresholdType     { return self(rawValue: 0) }
+    public static var BinaryInv: ThresholdType     { return self(rawValue: 1) }
+    public static var Trunc: ThresholdType     { return self(rawValue: 2) }
+    public static var ToZero: ThresholdType     { return self(rawValue: 3) }
+    public static var ToZeroInv: ThresholdType     { return self(rawValue: 4) }
+    
+    public static var Mask: ThresholdType     { return self(rawValue: 7) }
+    //!< flag, use Otsu algorithm to choose the optimal threshold value
+    public static var Otsu: ThresholdType     { return self(rawValue: 8) }
+    //!< flag, use Triangle algorithm to choose the optimal threshold value
+    public static var Triangle: ThresholdType     { return self(rawValue: 16) }
+    // ...
 }
 
-public enum MorphShapes: Int {
+//! type of morphological operation
+public  enum MorphType: Int {
+    case Erode    = 0, //!< see cv::erode
+    Dilate   = 1, //!< see cv::dilate
+    Open     = 2, //!< an opening operation
+    //!< \f[\texttt{dst} = \mathrm{open} ( \texttt{src} , \texttt{element} )= \mathrm{dilate} ( \mathrm{erode} ( \texttt{src} , \texttt{element} ))\f]
+    Close    = 3, //!< a closing operation
+    //!< \f[\texttt{dst} = \mathrm{close} ( \texttt{src} , \texttt{element} )= \mathrm{erode} ( \mathrm{dilate} ( \texttt{src} , \texttt{element} ))\f]
+    Gradient = 4, //!< a morphological gradient
+    //!< \f[\texttt{dst} = \mathrm{morph\_grad} ( \texttt{src} , \texttt{element} )= \mathrm{dilate} ( \texttt{src} , \texttt{element} )- \mathrm{erode} ( \texttt{src} , \texttt{element} )\f]
+    TopHat   = 5, //!< "top hat"
+    //!< \f[\texttt{dst} = \mathrm{tophat} ( \texttt{src} , \texttt{element} )= \texttt{src} - \mathrm{open} ( \texttt{src} , \texttt{element} )\f]
+    BlackHat = 6  //!< "black hat"
+    //!< \f[\texttt{dst} = \mathrm{blackhat} ( \texttt{src} , \texttt{element} )= \mathrm{close} ( \texttt{src} , \texttt{element} )- \texttt{src}\f]
+}
+
+public enum MorphShape: Int {
     case Rect    = 0, //!< a rectangular structuring element:  \f[E_{ij}=1\f]
     Cross   = 1, //!< a cross-shaped structuring element:
     //!< \f[E_{ij} =  \fork{1}{if i=\texttt{anchor.y} or j=\texttt{anchor.x}}{0}{otherwise}\f]

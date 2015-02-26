@@ -7,7 +7,7 @@
 //
 
 #import "OpenCV.h"
-#import "Mat.h"
+#import "OpenCVMat.h"
 
 typedef NS_ENUM(int, IMRead) {
     IMReadUnchanged  = -1, // 8bit, color or not
@@ -19,5 +19,5 @@ typedef NS_ENUM(int, IMRead) {
 };
 
 @interface OpenCV (highgui)
-+ (Mat *)imread:(NSString *)filename flags:(IMRead)flags;
++ (OpenCVMat *)imread:(NSString *)filename flags:(IMRead)flags;
 @end

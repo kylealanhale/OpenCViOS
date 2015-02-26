@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Kyle Alan Hale. All rights reserved.
 //
 
-#import "Mat.h"
+#import "OpenCVMat.h"
 #include <opencv2/core.hpp>
 
-@interface Mat (raw)
+@interface OpenCVMat (raw)
 @property (nonatomic, readonly) cv::Mat rawMat;
 - (instancetype)initWithRawMat:(cv::Mat)rawMat;
 @end

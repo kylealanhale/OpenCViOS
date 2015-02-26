@@ -7,15 +7,15 @@
 //
 
 #import "OpenCV+highgui.h"
-#import "Mat+raw.h"
+#import "OpenCV+raw.h"
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
 @implementation OpenCV (highgui)
-+ (Mat *)imread:(NSString *)filename flags:(IMRead)flags
++ (OpenCVMat *)imread:(NSString *)filename flags:(IMRead)flags
 {
     cv::Mat rawMat = cv::imread([filename UTF8String], flags);
-    return [[Mat alloc] initWithRawMat:rawMat];
+    return [[OpenCVMat alloc] initWithRawMat:rawMat];
 }
 @end

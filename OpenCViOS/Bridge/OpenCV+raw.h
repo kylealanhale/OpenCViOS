@@ -7,7 +7,7 @@
 //
 
 #import "OpenCV.h"
-#import "Mat+raw.h"
+#import "OpenCVMat+raw.h"
 #include <opencv2/core.hpp>
 
 @interface OpenCV (raw)
