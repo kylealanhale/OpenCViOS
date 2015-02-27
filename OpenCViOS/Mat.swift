@@ -48,6 +48,14 @@ public class Mat: Printable {
     public func elemSize() -> Int { return bridgedMat.elemSize() }
     public func total() -> Int { return bridgedMat.total() }
     public func size() -> CGSize { return bridgedMat.size() }
+    public func setTo(value: Scalar, mask: Scalar? = nil) -> Mat! {
+        return Mat(bridgedMat: bridgedMat.setToValue(value, mask: mask))
+    }
+}
+
+infix operator <~ { }
+public func <~ (inout left: Mat!, right: Scalar) {
+    left.setTo(right)
 }
 
 public struct MatStep {

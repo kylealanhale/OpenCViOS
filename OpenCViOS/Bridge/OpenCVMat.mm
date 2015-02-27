@@ -73,6 +73,11 @@
 {
     return [OpenCV fromSize:rawMat.size()];
 }
+- (OpenCVMat *)setToValue:(NSArray *)value mask:(NSArray *)mask
+{
+    cv::InputArray rawMask = mask ? [OpenCV toScalar:value] : cv::noArray();
+    return [self initWithRawMat:rawMat.setTo([OpenCV toScalar:value], rawMask)];
+}
 
 #pragma mark - Properties
 - (cv::Mat)rawMat
@@ -83,7 +88,6 @@
 {
     return rawMat.rows;
 }
-
 - (NSInteger)cols
 {
     return rawMat.cols;

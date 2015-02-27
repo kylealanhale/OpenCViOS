@@ -23,4 +23,5 @@
 - (NSInteger)total;
 - (CGSize)size;
 - (NSInteger)stepAtIndex:(NSInteger)index;
+- (instancetype)setToValue:(NSArray *)value mask:(NSArray *)mask;
 @end
