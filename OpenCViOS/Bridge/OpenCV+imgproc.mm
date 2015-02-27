@@ -42,7 +42,7 @@
 {
     cv::InputArray rawHierarchy = hierarchy ? [OpenCV toHierarchy:hierarchy] : cv::noArray();
 
-    cv::drawContours(image.rawMat, [OpenCV toContours:contours], (int)contourIdx, [OpenCV toScalar:color], (int)thickness, (int)lineType, rawHierarchy);
+    cv::drawContours(image.rawMat, [OpenCV toContours:contours], (int)contourIdx, [OpenCV toScalar:color], (int)thickness, (int)lineType, rawHierarchy, (int)maxLevel, [OpenCV toPoint:offset]);
 }
 
 + (void)findContoursWithImage:(OpenCVMat *)image contours:(NSArray **)contours hierarchy:(NSArray **)hierarchy mode:(NSInteger)mode method:(NSInteger)method offset:(CGPoint)offset

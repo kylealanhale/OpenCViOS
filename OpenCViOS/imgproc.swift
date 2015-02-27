@@ -85,6 +85,8 @@ public typealias Scalar = [Double]
 public typealias Contour = [CGPoint]
 public typealias Vec4i = [Int]
 
+public var Filled = -1
+
 public enum BorderType: Int {
     case Constant = 0
     case Replicate = 1

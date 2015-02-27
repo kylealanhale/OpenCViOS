@@ -21,6 +21,7 @@ public class Mat: Printable {
     }
     init(bridgedMat: OpenCVMat!) {
         self.bridgedMat = bridgedMat
+        setup()
     }
     public init!(rows: Int, cols: Int, type: MatType, data: UnsafeMutablePointer<Void>, step: Int = 0) {
         bridgedMat = OpenCVMat(rows: rows, cols: cols, type: type.rawValue, data: data, step: step)
@@ -28,6 +29,7 @@ public class Mat: Printable {
     }
     public init!(mat: Mat!, regionOfInterest: CGRect) {
         bridgedMat = OpenCVMat(mat: mat.bridgedMat, roi: regionOfInterest)
+        setup()
     }
     
     public class func zeroes(size: CGSize, type: MatType) -> Mat! {
